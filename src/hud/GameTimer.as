@@ -3,6 +3,7 @@ package hud
 	import com.jam3media.text.BaseTextFormat;
 	import com.jam3media.text.TextFactory;
 	
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.text.TextField;
@@ -19,6 +20,7 @@ package hud
 		private var timeCopy:TextField;
 		private var timeCounter:TextField;
 		private var gameTimer:Timer ;
+		private var bg:Shape;
 		
 		public function GameTimer()
 		{
@@ -39,7 +41,15 @@ package hud
 			
 			timeCounter.x = timeCopy.x+timeCopy.width;
 			
+			bg = new Shape();
+			bg.graphics.beginFill(0x000000,1);
+			bg.graphics.drawRect(0,0,timeCopy.width+timeCopy.width-35, timeCopy.height);
+			bg.graphics.endFill();
+			this.addChildAt(bg, 0);
+			
 			gameTimer = new Timer(1000,60);
+			
+			
 			
 			gameTimer.addEventListener(TimerEvent.TIMER,onTimerUpdate);
 			gameTimer.addEventListener(TimerEvent.TIMER_COMPLETE,onTimerComplete);
