@@ -1,10 +1,24 @@
 package
 {
+	import away3d.cameras.SpringCam;
+	import away3d.containers.Scene3D;
+	import away3d.containers.View3D;
+	import away3d.core.render.DefaultRenderer;
+	import away3d.entities.Sprite3D;
+	import away3d.materials.MaterialBase;
+	import away3d.materials.TextureMaterial;
+	import away3d.primitives.SphereGeometry;
+	import away3d.textures.BitmapTexture;
+	import away3d.textures.Texture2DBase;
+	
 	import com.jam3media.text.BaseTextFormat;
 	import com.jam3media.text.TextFactory;
 	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.display3D.textures.TextureBase;
 	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
@@ -16,12 +30,21 @@ package
 	
 	//import  com.quetwo.Arduino.ArduinoConnector;
 	
-	[SWF(frameRate=30,width=1024,height=768, backgroundColor="#000000")]
+	[SWF(frameRate=30,width=4096,height=1024, backgroundColor="#000000")]
 	public class CatsInSpace extends Sprite
 	{
 		
 		private var espn:ESPNService;
 		private var gameTimer:GameTimer;
+		
+		
+		private var scene:Scene3D; 
+		private var camera:SpringCam;
+		private var renderIt:DefaultRenderer;
+		private var view:View3D;
+		
+		private var cat:Sprite3D;
+		
 		
 		public function CatsInSpace()
 		{
@@ -36,7 +59,13 @@ package
 		
 		private function init():void{
 			
-			var pic:Bitmap = new CatsInSpaceGraphics.BEIGE_CAT;
+			stage.scaleMode=StageScaleMode.NO_SCALE;
+			stage.align=StageAlign.TOP_LEFT;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.frameRate = 24;
+			stage.color = 0x0;
+			
+			var pic:Bitmap = new CatsInSpaceGraphics.NEBULA;
 			this.addChild(pic);
 			
 			
@@ -48,6 +77,22 @@ package
 			gameTimer.addEventListener(GameTimerEvent.GAME_OVER, onGameOver);
 			this.addChild(gameTimer);
 			gameTimer.start();
+			
+			scene = new Scene3D();
+			camera =  new SpringCam();
+			renderIt = new DefaultRenderer();
+			view= new View3D(scene, camera, renderIt);
+			this.addChildAt(view,0);
+			
+			scene.addChild(CatsInSpaceSprite3DFactory.randomCatSprite);
+			
+			addEventListener(Event.ENTER_FRAME, renderScene);
+		 
+		}
+		
+		protected function renderScene(event:Event):void
+		{
+			view.render();
 		}
 		
 		private function onGameOver(e:GameTimerEvent):void

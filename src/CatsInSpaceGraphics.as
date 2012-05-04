@@ -74,6 +74,10 @@ package
 		public static var keyBoardArray:Array=[BEIGE_KEYBOARD, BLACK_KEYBOARD,BLUE_KEYBOARD, RED_KEYBOARD, YELLOW_KEYBOARD];
 		public static var keyBoardAndCatArray:Array=[BEIGE_CAT_KEYBOARD,BLACK_CAT_KEYBOARD, BLUE_CAT_KEYBOARD, RED_CAT_KEYBOARD, YELLOW_CAT_KEYBOARD];
 		
+		//bg
+		[Embed(source="assets/graphics/nebula.png")]
+		public static var  NEBULA:Class;
+		
 		public function CatsInSpaceGraphics()
 		{
 		}
