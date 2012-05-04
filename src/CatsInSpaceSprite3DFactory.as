@@ -14,8 +14,8 @@ package
 		}
 		
 		public static function get randomCatSprite():Sprite3D{		
-			var randNum:int = Math.round(Math.random()* CatsInSpaceGraphics.catArray.length);		
-			var pic:Bitmap = new CatsInSpaceGraphics.catArray[randNum];
+			var randNum:int = Math.floor((Math.random()* CatsInSpaceGraphics.keyBoardAndCatArray.length));		
+			var pic:Bitmap = new CatsInSpaceGraphics.keyBoardAndCatArray[randNum];
 			var bitmapTexture:BitmapTexture = new BitmapTexture(pic.bitmapData)
 			var mat:TextureMaterial = new TextureMaterial(bitmapTexture);
 			var cat:Sprite3D ;

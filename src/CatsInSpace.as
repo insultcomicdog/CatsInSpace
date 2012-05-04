@@ -28,15 +28,14 @@ package
 	import hud.GameTimer;
 	import hud.events.GameTimerEvent;
 	
-	//import  com.quetwo.Arduino.ArduinoConnector;
 	
 	[SWF(frameRate=30,width=4096,height=1024, backgroundColor="#000000")]
+
 	public class CatsInSpace extends Sprite
 	{
 		
 		private var espn:ESPNService;
 		private var gameTimer:GameTimer;
-		
 		
 		private var scene:Scene3D; 
 		private var camera:SpringCam;
@@ -83,8 +82,8 @@ package
 			renderIt = new DefaultRenderer();
 			view= new View3D(scene, camera, renderIt);
 			this.addChildAt(view,0);
-			
-			scene.addChild(CatsInSpaceSprite3DFactory.randomCatSprite);
+			var randCat:Sprite3D = CatsInSpaceSprite3DFactory.randomCatSprite;
+			scene.addChild(randCat);
 			
 			addEventListener(Event.ENTER_FRAME, renderScene);
 		 
