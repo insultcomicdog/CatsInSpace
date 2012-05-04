@@ -3,6 +3,7 @@ package
 	import com.jam3media.text.BaseTextFormat;
 	import com.jam3media.text.TextFactory;
 	
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -34,6 +35,11 @@ package
 		}
 		
 		private function init():void{
+			
+			var pic:Bitmap = new CatsInSpaceGraphics.BEIGE_CAT;
+			this.addChild(pic);
+			
+			
 			espn = new ESPNService();
 			espn.addEventListener(ESPNEvent.TOP_HEADLINE, onNewESPNHeadLine);
 			espn.getHeadline();
